@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Searchbox from "./Searchbox/Searchbox";
 import Itemview from "./Itemview/Itemview";
+import Recipe from "./Recipe/Recipe"
 import './App.css';
 
 class App extends Component {
@@ -8,28 +9,67 @@ class App extends Component {
 		super(props);
 		this.state = {
 			input: "",
-			data: []
+			data: [],
+			route: "search",
+			choice: "",
+			hoverdata: {}
 		}
 	}
 
 	componentDidMount() {
-		fetch("https://api.xivdb.com/gathering")
+		fetch("https://api.xivdb.com/recipe")
 			.then(response => response.json())
 			.then(data => this.setState({data: data}))
 			.catch(err => console.log(err))
+
+		console.log("mounted")
 	}
 
 	changeInput = (event) => {
 		this.setState({input: event.target.value})
 	}
 
+	itemClick = (event) => {
+		if (event.target.getAttribute("data-id")) {
+			this.setState({choice: event.target.getAttribute("data-id"), route: "recipe"})
+		}
+	}
+
+	changeRoute = (route) => {
+		switch (route) {
+			case "search":
+				this.setState({route: route, input: ""})
+				break;
+
+			default:
+				this.setState({route: route})
+				break;
+		}
+	}
+
 	render() {
-		console.log(this.state.input)
+		const { input, data, route, choice } = this.state;
+		const filteredData = data.filter(item => {
+			return item.name.toLowerCase().includes(input.toLowerCase());
+		})
+
 		return (
-			<div className="App">
-				<h1>FFXIV search</h1>
-				<Searchbox changeInput={this.changeInput} />
-				<Itemview items={this.state.data} />
+			<div>
+				
+				{
+					route === "search" 
+						?	<div className="App">
+								<Searchbox changeInput={this.changeInput} />
+								<Itemview 
+									items={filteredData}
+									itemClick={this.itemClick}
+									trackEvent={this.trackEvent}
+									hoverData={this.state.hoverdata}
+								/>
+							</div>
+						: <Recipe choice={choice} changeRoute={this.changeRoute}/>
+				}
+				
 			</div>
 		);
 	}

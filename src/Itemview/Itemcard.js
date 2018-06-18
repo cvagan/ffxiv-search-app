@@ -1,8 +1,8 @@
 import React from "react";
 
-const Itemcard = ({ itemId, itemName, lodeId }) => {
+const Itemcard = ({ itemId, itemName, hoverData }) => {
 	return (
-		<div style={{width: "100px", height: "100px"}}>
+		<div className="itemcard" data-id={itemId}>
 			{itemName}
 		</div>
 	);

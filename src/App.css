@@ -5,4 +5,58 @@
 .flex {
 	display: flex;
 	flex-wrap: wrap;
+	align-content: flex-start;
+}
+
+.itemcard {
+	width: 150px;
+	height: 150px;
+	margin: 2px;
+	border: 2px black solid;
+	transition: all 0.2s;
+	cursor: pointer;
+}
+
+.itemcard:hover {
+	transform: scale(1.1);
+}
+
+.view {
+	margin-top: 20px;
+	overflow-y: scroll;
+	bottom: 0;
+	height: 80vh;
+	width: 100%;
+}
+
+.searchbar {
+	border-bottom: 2px solid black;
+	height: 130px;
+}
+
+.container {
+	width: 80%;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.row {
+	text-align: left;
+}
+
+ul {
+	list-style: none;
+}
+
+.ingredient-img {
+	width: 65px;
+	height: auto;
+}
+
+.navigator {
+	cursor: pointer;
+}
+
+.navigator:hover {
+	color: steelblue;
 }

@@ -1,16 +1,15 @@
 import React from "react";
 import Itemcard from "./Itemcard";
 
-const Itemview = ({ items }) => {
+const Itemview = ({ items, itemClick }) => {
 	return (
-		<div className="flex">
+		<div className="flex view" onClick={itemClick}>
 			{
 				items.map((item, i) => {
 					return <Itemcard
-						key={i}
+						key={item.id}
 						itemId={item.id}
 						itemName={item.name}
-						lodeId={item.lodestone_id}
 					/>
 				})
 			}
