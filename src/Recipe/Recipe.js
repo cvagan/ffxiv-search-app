@@ -24,8 +24,8 @@ class Recipe extends React.Component {
 				{
 					recipe.name 
 						? (
-							<div>
-								<div className="media mt-3">
+							<div className="itembox">
+								<div className="media mt-3 subview">
 									<div className="media-body">
 										<h5 className="mt-0 mb-1">{recipe.name} ({recipe.class_name})</h5>
 										{
@@ -34,13 +34,17 @@ class Recipe extends React.Component {
 									</div>
 									<img className="m1-3" src={recipe.icon} alt="Item icon" />
 								</div>
-								<h5>Ingredients:</h5>
-								<IngredientList list={recipe.tree} />
+								<div className="subview">
+									<h5>Ingredients:</h5>
+									<IngredientList list={recipe.tree} />
+								</div>
 								<button className="btn btn-primary btn-sm" onClick={() => this.props.changeRoute("search")}>Go back</button>
 							</div>
 						)
 						: (
-							<h2>Loading...</h2>
+							<div className="itembox">
+								<h2>Loading...</h2>
+							</div>
 						)
 				}
 			</div>

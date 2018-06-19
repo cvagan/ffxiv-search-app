@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Searchbox from "./Searchbox/Searchbox";
 import Itemview from "./Itemview/Itemview";
-import Recipe from "./Recipe/Recipe"
+import Recipe from "./Recipe/Recipe";
 import './App.css';
 
 class App extends Component {

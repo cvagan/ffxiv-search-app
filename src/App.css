@@ -10,15 +10,17 @@
 
 .itemcard {
 	width: 150px;
-	height: 150px;
+	height: 80px;
 	margin: 2px;
 	border: 2px black solid;
 	transition: all 0.2s;
 	cursor: pointer;
+	border-radius: 5px;
+	background: linear-gradient(to right, #dfdfdf, #dedede);
 }
 
 .itemcard:hover {
-	transform: scale(1.1);
+	transform: scale(1.05);
 }
 
 .view {
@@ -30,22 +32,11 @@
 }
 
 .searchbar {
-	border-bottom: 2px solid black;
 	height: 130px;
-}
-
-.container {
-	width: 80%;
-	height: 100%;
-	margin: 0 auto;
 }
 
 .row {
 	text-align: left;
-}
-
-ul {
-	list-style: none;
 }
 
 .ingredient-img {
@@ -59,4 +50,37 @@ ul {
 
 .navigator:hover {
 	color: steelblue;
+}
+
+body {
+	background-image: url(moogle.png);
+	background-size: 200px auto;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 0 0;
+
+}
+
+input {
+	text-indent: 5px;
+}
+
+.itembox {
+	background: linear-gradient(to right, #dfdfdf, #dedede);
+	border-radius: 10px;
+	padding: 30px;
+	margin-top: 10%;
+	box-shadow: 1px 1px 2px black;
+}
+
+.itembox h2 {
+	text-align: center;
+}
+
+.subview {
+	background: linear-gradient(to right, #cacaca, #c1c1c1);
+	border-radius: 10px;
+	padding: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
