@@ -1,74 +1,39 @@
 import React, { Component } from 'react';
-import Searchbox from "./Searchbox/Searchbox";
-import Itemview from "./Itemview/Itemview";
-import Recipe from "./Recipe/Recipe";
+import RecipeSearch from "./Recipe/RecipeSearch";
+import Navigation from "./Navigation/Navigation";
 import './App.css';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			input: "",
-			data: [],
-			route: "search",
-			choice: "",
-			hoverdata: {}
+			route: "home"
 		}
 	}
 
-	componentDidMount() {
-		fetch("https://api.xivdb.com/recipe")
-			.then(response => response.json())
-			.then(data => this.setState({data: data}))
-			.catch(err => console.log(err))
-
-		console.log("mounted")
-	}
-
-	changeInput = (event) => {
-		this.setState({input: event.target.value})
-	}
-
-	itemClick = (event) => {
-		if (event.target.getAttribute("data-id")) {
-			this.setState({choice: event.target.getAttribute("data-id"), route: "recipe"})
-		}
-	}
-
+	//change routes
 	changeRoute = (route) => {
-		switch (route) {
-			case "search":
-				this.setState({route: route, input: ""})
-				break;
+		if (route !== this.state.route) {
+			this.setState({route: route});
+		}
+	}
 
-			default:
-				this.setState({route: route})
-				break;
+	//function for handling conditional rendering
+	routeHandler = () => {
+		const { route } = this.state;
+		switch (route) {
+			case "recipes":
+				return (
+					<RecipeSearch itemClick={this.itemClick} changeInput={this.changeInput} />
+				);
 		}
 	}
 
 	render() {
-		const { input, data, route, choice } = this.state;
-		const filteredData = data.filter(item => {
-			return item.name.toLowerCase().includes(input.toLowerCase());
-		})
-
 		return (
 			<div>
-				
-				{
-					route === "search" 
-						?	<div className="App">
-								<Searchbox changeInput={this.changeInput} />
-								<Itemview 
-									items={filteredData}
-									itemClick={this.itemClick}
-									trackEvent={this.trackEvent}
-									hoverData={this.state.hoverdata}
-								/>
-							</div>
-						: <Recipe choice={choice} changeRoute={this.changeRoute}/>
-				}
+				<Navigation changeRoute={this.changeRoute} />
+				{this.routeHandler()}
 				
 			</div>
 		);

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Itemcard = ({ itemId, itemName, hoverData }) => {
+const Itemcard = ({ itemId, itemName }) => {
 	return (
 		<div className="itemcard" data-id={itemId}>
 			{itemName}
