@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RecipeSearch from "./Recipe/RecipeSearch";
+import GatheringSearch from "./Gathering/GatheringSearch";
 import Navigation from "./Navigation/Navigation";
 import './App.css';
 
@@ -9,6 +10,10 @@ class App extends Component {
 		this.state = {
 			route: "home"
 		}
+	}
+
+	changeInput = function(event) {
+		this.setState({input: event.target.value})
 	}
 
 	//change routes
@@ -24,8 +29,16 @@ class App extends Component {
 		switch (route) {
 			case "recipes":
 				return (
-					<RecipeSearch itemClick={this.itemClick} changeInput={this.changeInput} />
+					<RecipeSearch changeInput={this.changeInput} />
 				);
+
+			case "gathering":
+				return (
+					<GatheringSearch changeInput={this.changeInput} />
+				);
+
+			default:
+				return <h1>Home route</h1>
 		}
 	}
 

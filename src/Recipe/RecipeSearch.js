@@ -12,10 +12,8 @@ class RecipeSearch extends React.Component {
 			viewItem: false,
 			chosenData: {}
 		}
-	}
 
-	changeInput = (event) => {
-		this.setState({input: event.target.value});
+		this.changeInput = this.props.changeInput.bind(this);
 	}
 
 	itemClick = (event) => {
