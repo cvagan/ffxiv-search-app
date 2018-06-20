@@ -10,6 +10,7 @@ const Itemview = ({ items, itemClick }) => {
 						key={item.id}
 						itemId={item.id}
 						itemName={item.name}
+						type={item.gathering_type}
 					/>
 				})
 			}
