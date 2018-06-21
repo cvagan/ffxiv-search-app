@@ -1,12 +1,11 @@
 import React from "react";
 import Searchbox from "../Components/Searchbox/Searchbox";
 import Itemview from "../Components/Itemview/Itemview";
-import Recipe from "../Components/Recipe/Recipe";
 
-class RecipeSearch extends React.Component {
+class EnemySearch extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state= {
+		this.state = {
 			data: [],
 			input: "",
 			viewItem: false,
@@ -17,23 +16,15 @@ class RecipeSearch extends React.Component {
 		this.itemClick = this.props.itemClick.bind(this);
 	}
 
-	goBack = () => {
-		this.setState({viewItem: false, input: ""})
-	}
-
 	componentDidMount() {
-		fetch("https://api.xivdb.com/recipe")
+		fetch("https://api.xivdb.com/enemy?columns=id,name")
 			.then(response => response.json())
 			.then(data => this.setState({data: data}))
 			.catch(err => console.log(err))
 	}
 
 	render() {
-		const { input, data, viewItem, chosenData } = this.state;
-		const filteredData = data.filter(item => {
-			return item.name.toLowerCase().includes(input.toLowerCase());
-		})
-
+		const { viewItem, data } = this.state;
 		return (
 			<div>
 			{
@@ -41,20 +32,21 @@ class RecipeSearch extends React.Component {
 					? (
 						<div className="App">
 							<Searchbox changeInput={this.changeInput} />
-							<Itemview 
-								items={filteredData}
+							<Itemview
+								items={data}
 								itemClick={this.itemClick}
-								route="recipe"
+								route="enemy"
 							/>
 						</div>
 					)
 					: (
-						<Recipe recipe={chosenData} goBack={this.goBack} />
+						null
 					)
 			}
+				
 			</div>
 		);
 	}
 }
 
-export default RecipeSearch;
+export default EnemySearch;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RecipeSearch from "./RecipeSearch";
 import GatheringSearch from "./GatheringSearch";
 import Navigation from "../Components/Navigation/Navigation";
+import EnemySearch from "./EnemySearch";
 import '../App.css';
 
 class App extends Component {
@@ -16,6 +17,16 @@ class App extends Component {
 		this.setState({input: event.target.value})
 	}
 
+	itemClick = function(event, route) {
+		const id = event.target.getAttribute("data-id");
+		if (id) {
+			fetch(`https://api.xivdb.com/${route}/${id}`)
+				.then(response => response.json())
+				.then(data => this.setState({chosenData: data, viewItem: true}))
+				.catch(err => console.log(err))
+		}
+	}
+
 	//change routes
 	changeRoute = (route) => {
 		if (route !== this.state.route) {
@@ -26,14 +37,19 @@ class App extends Component {
 	//function for handling conditional rendering
 	routeHandler = () => {
 		switch (this.state.route) {
-			case "recipes":
+			case "recipe":
 				return (
-					<RecipeSearch changeInput={this.changeInput} />
+					<RecipeSearch changeInput={this.changeInput} itemClick={this.itemClick} />
 				);
 
 			case "gathering":
 				return (
-					<GatheringSearch changeInput={this.changeInput} />
+					<GatheringSearch changeInput={this.changeInput} itemClick={this.itemClick} />
+				);
+
+			case "enemy":
+				return (
+					<EnemySearch changeInput={this.changeInput} itemClick={this.itemClick} />
 				);
 
 			default:

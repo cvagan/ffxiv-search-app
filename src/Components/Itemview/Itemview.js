@@ -1,9 +1,9 @@
 import React from "react";
 import Itemcard from "./Itemcard";
 
-const Itemview = ({ items, itemClick }) => {
+const Itemview = ({ items, itemClick, route }) => {
 	return (
-		<div className="flex view" onClick={itemClick}>
+		<div className="flex view" onClick={(event) => itemClick(event, route)}>
 			{
 				items.map((item, i) => {
 					return <Itemcard

@@ -21,16 +21,7 @@ class GatheringSearch extends React.Component {
 		}
 
 		this.changeInput = this.props.changeInput.bind(this);
-	}
-
-	itemClick = (event) => {
-		const id = event.target.getAttribute("data-id");
-		if (id) {
-			fetch(`https://api.xivdb.com/gathering/${id}`)
-				.then(response => response.json())
-				.then(item => this.setState({chosenData: item, viewItem: true}))
-				.catch(err => console.log(err))
-		}
+		this.itemClick = this.props.itemClick.bind(this);
 	}
 
 	goBack = () => {
@@ -59,7 +50,11 @@ class GatheringSearch extends React.Component {
 						? (
 							<div className="App">
 								<Searchbox changeInput={this.changeInput} />
-								<Itemview items={filteredData} itemClick={this.itemClick} />
+								<Itemview 
+									items={filteredData}
+									itemClick={this.itemClick}
+									route="gathering"
+								/>
 							</div>
 						)
 
