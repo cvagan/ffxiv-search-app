@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import RecipeSearch from "./Recipe/RecipeSearch";
-import GatheringSearch from "./Gathering/GatheringSearch";
-import Navigation from "./Navigation/Navigation";
-import './App.css';
+import RecipeSearch from "./RecipeSearch";
+import GatheringSearch from "./GatheringSearch";
+import Navigation from "../Components/Navigation/Navigation";
+import '../App.css';
 
 class App extends Component {
 	constructor(props) {
@@ -25,8 +25,7 @@ class App extends Component {
 
 	//function for handling conditional rendering
 	routeHandler = () => {
-		const { route } = this.state;
-		switch (route) {
+		switch (this.state.route) {
 			case "recipes":
 				return (
 					<RecipeSearch changeInput={this.changeInput} />
@@ -38,7 +37,14 @@ class App extends Component {
 				);
 
 			default:
-				return <h1>Home route</h1>
+				return (
+					<div className="container">
+						<div className="jumbotron">
+							<h1 className="display-4">FFXIV Search App</h1>
+							<p className="lead">This is a simple search app for various FFXIV resources. This app is powered by the XIVDB API.</p>
+						</div>
+					</div>
+				);
 		}
 	}
 
@@ -46,8 +52,7 @@ class App extends Component {
 		return (
 			<div>
 				<Navigation changeRoute={this.changeRoute} />
-				{this.routeHandler()}
-				
+				{this.routeHandler()}				
 			</div>
 		);
 	}

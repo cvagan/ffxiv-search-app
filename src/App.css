@@ -84,3 +84,7 @@ input {
 	margin-top: 10px;
 	margin-bottom: 10px;
 }
+
+.jumbotron {
+	margin-top: 20vh;
+}

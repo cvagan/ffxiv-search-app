@@ -1,7 +1,7 @@
 import React from "react";
-import Searchbox from "../Searchbox/Searchbox";
-import Itemview from "../Itemview/Itemview";
-import Recipe from "./Recipe";
+import Searchbox from "../Components/Searchbox/Searchbox";
+import Itemview from "../Components/Itemview/Itemview";
+import Recipe from "../Components/Recipe/Recipe";
 
 class RecipeSearch extends React.Component {
 	constructor(props) {

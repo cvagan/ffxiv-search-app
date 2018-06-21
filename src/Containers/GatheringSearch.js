@@ -1,7 +1,7 @@
 import React from "react";
-import Searchbox from "../Searchbox/Searchbox";
-import Itemview from "../Itemview/Itemview";
-import GatheringItem from "./GatheringItem";
+import Searchbox from "../Components/Searchbox/Searchbox";
+import Itemview from "../Components/Itemview/Itemview";
+import GatheringItem from "../Components/Gathering/GatheringItem";
 
 const lib = {
 	0: "(Mining)",
