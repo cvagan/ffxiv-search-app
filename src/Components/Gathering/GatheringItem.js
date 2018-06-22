@@ -1,5 +1,5 @@
 import React from "react";
-import LocationList from "./LocationList/LocationList";
+import LocationList from "../LocationList/LocationList";
 
 const GatheringItem = ({ item, goBack }) => {
 	return (

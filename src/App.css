@@ -88,3 +88,11 @@ input {
 .jumbotron {
 	margin-top: 20vh;
 }
+
+.navbar {
+	justify-content: space-around;
+}
+
+table {
+	display: block;
+}
