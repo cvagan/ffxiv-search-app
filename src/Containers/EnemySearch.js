@@ -31,7 +31,7 @@ class EnemySearch extends React.Component {
 	render() {
 		const { viewItem, data, chosenData, input } = this.state;
 		const filteredData = data.filter(enemy => {
-			return enemy.name.toString().includes(input.toString())
+			return enemy.name.toLowerCase().includes(input.toLowerCase())
 		})
 		return (
 			<div>
